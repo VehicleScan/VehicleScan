@@ -1,0 +1,18 @@
+cc_library_shared {
+    name: "libspi",
+    vendor: true,
+    srcs: ["SPI.cpp"],
+    host_supported: true,
+    cflags: [
+        "-Wall",
+        "-Werror",
+        "-Wextra",
+        "-fexceptions",
+    ],
+    shared_libs: [
+        "libbase",
+        "liblog",
+    ],
+    export_include_dirs: ["inc"], 
+    stl: "c++_shared",
+}

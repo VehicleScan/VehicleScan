@@ -1,0 +1,19 @@
+cc_library_shared {
+    name: "libuds",
+    vendor: true,
+    srcs: ["UDS.cpp"],
+    host_supported: true,
+    cflags: [
+        "-Wall",
+        "-Werror",
+        "-Wextra",
+        "-fexceptions",
+    ],
+    shared_libs: [
+        "libbase",
+        "liblog",
+        "libspi",
+        "libmcp251x"
+    ],
+    export_include_dirs: ["inc"], 
+}

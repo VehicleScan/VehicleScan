@@ -1,0 +1,20 @@
+cc_library_shared {
+    name: "libmcp251x",
+    vendor: true,
+    host_supported: true,
+    srcs: [
+        "MCP251x.cpp",
+    ],
+    static_libs: [  
+        "libc++_static",
+    ],
+    shared_libs: [
+        "libspi"
+    ],
+    export_include_dirs: [
+        "inc", 
+    ],
+    cppflags: [
+        "-std=c++17",
+    ],
+}
