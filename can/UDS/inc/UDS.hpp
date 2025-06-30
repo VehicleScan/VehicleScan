@@ -1,12 +1,12 @@
-#ifndef UDS_HPP
-#define UDS_HPP
+#ifndef UDS__HPP
+#define UDS__HPP
 #include "MCP251x.hpp"
 #include <cstdint>
 #include <array>
 #include <vector>
 #include <queue>
 
-class UDS{
+class UDS_{
     public:
     enum class PCI:uint8_t{
         SINGLE_FRAME = 0x00,
@@ -49,21 +49,21 @@ class UDS{
         SERVER_ID = 0x7E8,
     };
 
-    struct UDS_Msg{   
+    struct UDS__Msg{   
         SID sid;
         PCI pci;
         std::vector<uint8_t> ReqParams;
         uint8_t req_params_length = 0;
-        UDS_Msg() : sid(SID::NEGATIVE_RESPONSE), pci(PCI::SINGLE_FRAME), req_params_length(0) {}
+        UDS__Msg() : sid(SID::NEGATIVE_RESPONSE), pci(PCI::SINGLE_FRAME), req_params_length(0) {}
     };
     
-    explicit UDS(MCP251x mcp251x);
+    explicit UDS_(MCP251x mcp251x);
 
-    bool sendRequest(const UDS_Msg& request);
+    bool sendRequest(const UDS__Msg& request);
     
-    void registerOnRequestReceivedCB(std::function<void(const UDS_Msg&)> callback);
+    void registerOnRequestReceivedCB(std::function<void(const UDS__Msg&)> callback);
 
-    void registerOnResponseReceivedCB(std::function<void(const UDS_Msg&)> callback);
+    void registerOnResponseReceivedCB(std::function<void(const UDS__Msg&)> callback);
 
     void sendNegativeResponse(SID requested_sid, NRC nrc_code);
 
@@ -73,13 +73,13 @@ class UDS{
 
     private:
     MCP251x can;
-    std::function<void(const UDS_Msg&)> request_callback_;
-    std::function<void(const UDS_Msg&)> response_callback_;
+    std::function<void(const UDS__Msg&)> request_callback_;
+    std::function<void(const UDS__Msg&)> response_callback_;
 
-    UDS_Msg processReceivedFrame(const std::array<uint8_t, 8>& data, uint8_t length, uint32_t can_id);
-    bool sendSingleFrame(const UDS_Msg& msg,CAN_ID canId);
-    void processMessage(const UDS_Msg& msg);
-    UDS_Msg handleSingleFrame(const std::array<uint8_t, 8>& data, uint8_t length);
-    std::vector<uint8_t> sync_Request(UDS_Msg& request);
+    UDS__Msg processReceivedFrame(const std::array<uint8_t, 8>& data, uint8_t length, uint32_t can_id);
+    bool sendSingleFrame(const UDS__Msg& msg,CAN_ID canId);
+    void processMessage(const UDS__Msg& msg);
+    UDS__Msg handleSingleFrame(const std::array<uint8_t, 8>& data, uint8_t length);
+    std::vector<uint8_t> sync_Request(UDS__Msg& request);
 };
-#endif // UDS_HPP
+#endif // UDS__HPP

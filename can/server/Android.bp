@@ -1,0 +1,19 @@
+cc_binary {
+    name: "udsServer",
+    vendor: true,
+    srcs: ["server.cpp"],
+    cflags: [
+        "-Wall",
+        "-Werror",
+        "-Wextra",
+        "-fexceptions",
+    ],
+    shared_libs: [
+        "libbase",
+        "liblog",
+        "libspi",
+        "libmcp251x",
+        "libuds",
+    ],
+    stl: "c++_shared",
+}
