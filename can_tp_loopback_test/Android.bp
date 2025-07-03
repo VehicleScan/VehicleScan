@@ -1,0 +1,17 @@
+cc_binary {
+    name: "canTpTest",
+    vendor: true,
+    srcs: ["main.cpp"],
+    cflags: [
+        "-Wall",
+        "-Werror",
+        "-Wextra",
+        "-fexceptions",
+    ],
+    shared_libs: [
+        "libbase",
+        "liblog",
+        "libcantp"
+    ],
+    stl: "c++_shared",
+}

@@ -1,0 +1,19 @@
+cc_library_shared {
+    name: "libcanudstpclient",
+    vendor: true,
+    srcs: ["src/UDS_CLIENT.cpp"],
+    host_supported: true,
+    cflags: [
+        "-Wall",
+        "-Werror",
+        "-Wextra",
+        "-fexceptions",  
+    ],
+    cppflags: ["-fexceptions"],
+    shared_libs: [
+        "libbase",
+        "liblog",
+        "libcantp"
+    ],
+    export_include_dirs: ["inc"],
+}
