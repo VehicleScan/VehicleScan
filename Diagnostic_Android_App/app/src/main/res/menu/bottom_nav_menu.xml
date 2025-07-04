@@ -1,0 +1,10 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/dashboardFragment"
+        android:icon="@drawable/speed2"
+        android:title="@string/dashboard" />
+    <item
+        android:id="@+id/udsListFragment"
+        android:icon="@drawable/msg2"
+        android:title="@string/uds_list" />
+</menu>

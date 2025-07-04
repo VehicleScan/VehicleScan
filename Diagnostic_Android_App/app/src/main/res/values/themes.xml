@@ -1,0 +1,8 @@
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <!-- Base application theme -->
+    <style name="Base.Theme.Diagnostic_Android_App" parent="Theme.MaterialComponents.DayNight.NoActionBar">
+        <!-- You can customize colors here -->
+    </style>
+
+    <style name="Theme.Diagnostic_Android_App" parent="Base.Theme.Diagnostic_Android_App" />
+</resources>
