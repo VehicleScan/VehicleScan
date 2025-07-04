@@ -41,7 +41,12 @@ class MainActivity : AppCompatActivity() {
                     2,
                     Random.nextFloat() * (config2.maxSpeed - config2.minSpeed) + config2.minSpeed
                 )
-                kotlinx.coroutines.delay(5000)
+                updateSpeedometer(1, (50..100).random().toFloat())
+                updateSpeedometer(2, (50..100).random().toFloat())
+                updateDiagnostic("temperature", (180..220).random().toFloat())
+                updateDiagnostic("battery", (12..14).random().toFloat())
+                updateDiagnostic("tirePressure", (30..35).random().toFloat())
+                kotlinx.coroutines.delay(3500)
             }
         }
 
@@ -69,6 +74,17 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
+
+    fun updateDiagnostic(type: String, value: Float) {
+        lifecycleScope.launch {
+            when (type) {
+                "temperature" -> _temperatureFlow.value = value
+                "battery" -> _batteryFlow.value = value
+                "tirePressure" -> _tirePressureFlow.value = value
+            }
+        }
+    }
+
     fun updateSpeedometer(index: Int, newSpeed: Float) {
         when (index) {
             1 -> _speed1Flow.value = newSpeed
@@ -76,11 +92,18 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
+
     companion object {
         private val _speed1Flow = MutableStateFlow(0f)
         private val _speed2Flow = MutableStateFlow(0f)
+        private val _temperatureFlow = MutableStateFlow(0f)
+        private val _batteryFlow = MutableStateFlow(0f)
+        private val _tirePressureFlow = MutableStateFlow(0f)
         val speed1Flow: StateFlow<Float> get() = _speed1Flow
         val speed2Flow: StateFlow<Float> get() = _speed2Flow
+        val temperatureFlow: StateFlow<Float> get() = _temperatureFlow
+        val batteryFlow: StateFlow<Float> get() = _batteryFlow
+        val tirePressureFlow: StateFlow<Float> get() = _tirePressureFlow
         val config1 = SpeedometerConfig()
         val config2 = SpeedometerConfig()
     }
