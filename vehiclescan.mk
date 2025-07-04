@@ -7,4 +7,5 @@ PRODUCT_PACKAGES += udsServer \
 					libcanudstpserver \
 					libcanudstpclient \
 					canUdsServerTest \
-					canUdsClientTest
+					canUdsClientTest \
+					DiagnosticApp
