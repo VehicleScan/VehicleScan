@@ -8,4 +8,5 @@ PRODUCT_PACKAGES += udsServer \
 					libcanudstpclient \
 					canUdsServerTest \
 					canUdsClientTest \
-					DiagnosticApp
+					DiagnosticApp \
+					DiagnosticOverlaybp
