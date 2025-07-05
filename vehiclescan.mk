@@ -9,7 +9,7 @@ PRODUCT_PACKAGES += udsServer \
 					canUdsServerTest \
 					canUdsClientTest \
 					can_setup \
-					canUdsServiceHandler
+					canUdsServiceHandler \
 					DiagnosticApp \
 					DiagnosticOverlaybp \
 					CustomCarSystemUIBottomRoundedRRO
