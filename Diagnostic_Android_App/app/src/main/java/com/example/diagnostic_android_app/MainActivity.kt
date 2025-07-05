@@ -15,6 +15,10 @@ import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.launch
 import kotlin.random.Random
+import android.car.Car
+import android.car.hardware.CarPropertyValue
+import android.car.hardware.property.CarPropertyManager
+import android.content.Intent
 
 data class SpeedometerConfig(
     val minSpeed: Float = 0f,
@@ -25,28 +29,126 @@ data class SpeedometerConfig(
 class MainActivity : AppCompatActivity() {
     private lateinit var navController: NavController
 
+    val VENDOR_EXTENSION_RPM_UDS_PROPERTY:Int = 0x21400104
+
+    val VENDOR_EXTENSION_SPEED_UDS_PROPERTY:Int = 0x21400105
+
+    val VENDOR_EXTENSION_OILTEMP_UDS_PROPERTY:Int = 0x21400106
+
+    val VENDOR_EXTENSION_AIRFLOW_UDS_PROPERTY:Int = 0x21400107
+
+    val VENDOR_EXTENSION_TIREPRES_UDS_PROPERTY:Int = 0x21400108
+
+    val VENDOR_EXTENSION_STRING_DTC_PROPERTY:Int = 0x21100109
+
+    val VENDOR_EXTENSION_INIT_UDS_PROPERTY:Int = 0x2140010A
+
+
+    lateinit var car:Car
+
+    lateinit var carPropertyManager:CarPropertyManager
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         requestedOrientation = ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE
         //hideSystemBars()
         setContentView(R.layout.activity_main)
 
+        car = Car.createCar(this.applicationContext)
+
+        carPropertyManager = car.getCarManager(Car.PROPERTY_SERVICE) as CarPropertyManager
+
+        carPropertyManager.registerCallback(object : CarPropertyManager.CarPropertyEventCallback{
+            override fun onChangeEvent(p0: CarPropertyValue<*>?) {
+                updateSpeedometer(0, (p0?.value ?: 0.0) as Float)
+            }
+
+            override fun onErrorEvent(p0: Int, p1: Int) {
+                Log.i("Prop Error", "$p0 , $p1")
+            }
+
+        },VENDOR_EXTENSION_RPM_UDS_PROPERTY, CarPropertyManager.SENSOR_RATE_FASTEST)
+
+        carPropertyManager.registerCallback(object : CarPropertyManager.CarPropertyEventCallback{
+            override fun onChangeEvent(p0: CarPropertyValue<*>?) {
+                updateSpeedometer(1, (p0?.value ?: 0.0) as Float)
+            }
+
+            override fun onErrorEvent(p0: Int, p1: Int) {
+                Log.i("Prop Error", "$p0 , $p1")
+            }
+
+        },VENDOR_EXTENSION_SPEED_UDS_PROPERTY, CarPropertyManager.SENSOR_RATE_FASTEST)
+
+        carPropertyManager.registerCallback(object : CarPropertyManager.CarPropertyEventCallback{
+            override fun onChangeEvent(p0: CarPropertyValue<*>?) {
+                updateDiagnostic("temperature", (p0?.value ?: 0.0) as Float)
+            }
+
+            override fun onErrorEvent(p0: Int, p1: Int) {
+                Log.i("Prop Error", "$p0 , $p1")
+            }
+
+        },VENDOR_EXTENSION_OILTEMP_UDS_PROPERTY, CarPropertyManager.SENSOR_RATE_FASTEST)
+
+        carPropertyManager.registerCallback(object : CarPropertyManager.CarPropertyEventCallback{
+            override fun onChangeEvent(p0: CarPropertyValue<*>?) {
+                updateDiagnostic("battery", (p0?.value ?: 0.0) as Float)
+            }
+
+            override fun onErrorEvent(p0: Int, p1: Int) {
+                Log.i("Prop Error", "$p0 , $p1")
+            }
+
+        },VENDOR_EXTENSION_AIRFLOW_UDS_PROPERTY, CarPropertyManager.SENSOR_RATE_FASTEST)
+
+        carPropertyManager.registerCallback(object : CarPropertyManager.CarPropertyEventCallback{
+            override fun onChangeEvent(p0: CarPropertyValue<*>?) {
+                updateDiagnostic("tirePressure", (p0?.value ?: 0.0) as Float)
+            }
+
+            override fun onErrorEvent(p0: Int, p1: Int) {
+                Log.i("Prop Error", "$p0 , $p1")
+            }
+
+        },VENDOR_EXTENSION_TIREPRES_UDS_PROPERTY, CarPropertyManager.SENSOR_RATE_FASTEST)
+
+
+
+
+//        lifecycleScope.launch {
+//            while (true) {
+//                updateSpeedometer(
+//                    1,
+//                    Random.nextFloat() * (config1.maxSpeed - config1.minSpeed) + config1.minSpeed
+//                )
+//                updateSpeedometer(
+//                    2,
+//                    Random.nextFloat() * (config2.maxSpeed - config2.minSpeed) + config2.minSpeed
+//                )
+//                updateSpeedometer(1, (50..100).random().toFloat())
+//                updateSpeedometer(2, (50..100).random().toFloat())
+//                updateDiagnostic("temperature", (180..220).random().toFloat())
+//                updateDiagnostic("battery", (12..14).random().toFloat())
+//                updateDiagnostic("tirePressure", (30..35).random().toFloat())
+//                kotlinx.coroutines.delay(3500)
+//            }
+//        }
+
         lifecycleScope.launch {
             while (true) {
-                updateSpeedometer(
-                    1,
-                    Random.nextFloat() * (config1.maxSpeed - config1.minSpeed) + config1.minSpeed
-                )
-                updateSpeedometer(
-                    2,
-                    Random.nextFloat() * (config2.maxSpeed - config2.minSpeed) + config2.minSpeed
-                )
-                updateSpeedometer(1, (50..100).random().toFloat())
-                updateSpeedometer(2, (50..100).random().toFloat())
-                updateDiagnostic("temperature", (180..220).random().toFloat())
-                updateDiagnostic("battery", (12..14).random().toFloat())
-                updateDiagnostic("tirePressure", (30..35).random().toFloat())
-                kotlinx.coroutines.delay(3500)
+
+                carPropertyManager.setIntProperty(VENDOR_EXTENSION_RPM_UDS_PROPERTY,0,1)
+
+                carPropertyManager.setIntProperty(VENDOR_EXTENSION_SPEED_UDS_PROPERTY,0,1)
+
+                carPropertyManager.setIntProperty(VENDOR_EXTENSION_OILTEMP_UDS_PROPERTY,0,1)
+
+                carPropertyManager.setIntProperty(VENDOR_EXTENSION_AIRFLOW_UDS_PROPERTY,0,1)
+
+                carPropertyManager.setIntProperty(VENDOR_EXTENSION_TIREPRES_UDS_PROPERTY,0,1)
+
+                kotlinx.coroutines.delay(200)
             }
         }
 
