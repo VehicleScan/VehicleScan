@@ -148,7 +148,7 @@ class MainActivity : AppCompatActivity() {
 
                 carPropertyManager.setIntProperty(VENDOR_EXTENSION_TIREPRES_UDS_PROPERTY,0,1)
 
-                kotlinx.coroutines.delay(200)
+                kotlinx.coroutines.delay(100)
             }
         }
 
