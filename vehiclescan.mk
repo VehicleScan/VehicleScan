@@ -9,6 +9,6 @@ PRODUCT_PACKAGES += udsServer \
 					canUdsServerTest \
 					canUdsClientTest \
 					can_setup \
-					can_policy
+					canUdsServiceHandler
 
-BOARD_SEPOLICY_DIRS += vendor/VehicleScan/can_uds/client_test/se_policy
+BOARD_SEPOLICY_DIRS += 	vendor/VehicleScan/can_uds/client_test/se_policy
