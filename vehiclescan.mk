@@ -7,4 +7,7 @@ PRODUCT_PACKAGES += udsServer \
 					libcanudstpserver \
 					libcanudstpclient \
 					canUdsServerTest \
-					canUdsClientTest
+					canUdsClientTest \
+					can_setup_sh
+
+BOARD_SEPOLICY_DIRS += vendor/VehicleScan/can_uds/client_test/se_policy

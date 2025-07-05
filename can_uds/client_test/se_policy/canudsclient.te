@@ -1,0 +1,8 @@
+# canudsclient.te
+
+type canudsclient, domain;
+type canudsclient_exec, exec_type, vendor_file_type, file_type;
+
+init_daemon_domain(canudsclient)
+allow canudsclient self:can_socket { create setopt write read ioctl bind };
+allow canudsclient self:socket { create };

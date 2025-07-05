@@ -1,0 +1,7 @@
+on boot
+    exec_start can_setup
+
+service can_setup /vendor/bin/can_setup
+    class root
+    user root
+    oneshot
