@@ -60,8 +60,8 @@ class MainActivity : AppCompatActivity() {
 
         carPropertyManager.registerCallback(object : CarPropertyManager.CarPropertyEventCallback{
             override fun onChangeEvent(p0: CarPropertyValue<*>?) {
-                updateSpeedometer(0, (p0?.value ?: 0.0) as Float)
-            }
+                val value = p0?.value as? Int ?: 0
+                updateSpeedometer(0, value.toFloat())            }
 
             override fun onErrorEvent(p0: Int, p1: Int) {
                 Log.i("Prop Error", "$p0 , $p1")
@@ -71,8 +71,8 @@ class MainActivity : AppCompatActivity() {
 
         carPropertyManager.registerCallback(object : CarPropertyManager.CarPropertyEventCallback{
             override fun onChangeEvent(p0: CarPropertyValue<*>?) {
-                updateSpeedometer(1, (p0?.value ?: 0.0) as Float)
-            }
+                val value = p0?.value as? Int ?: 0
+                updateSpeedometer(1, value.toFloat())            }
 
             override fun onErrorEvent(p0: Int, p1: Int) {
                 Log.i("Prop Error", "$p0 , $p1")
@@ -82,7 +82,7 @@ class MainActivity : AppCompatActivity() {
 
         carPropertyManager.registerCallback(object : CarPropertyManager.CarPropertyEventCallback{
             override fun onChangeEvent(p0: CarPropertyValue<*>?) {
-                updateDiagnostic("temperature", (p0?.value ?: 0.0) as Float)
+                updateDiagnostic("temperature", ((p0?.value ?: 0.0) as Int).toFloat())
             }
 
             override fun onErrorEvent(p0: Int, p1: Int) {
@@ -93,7 +93,7 @@ class MainActivity : AppCompatActivity() {
 
         carPropertyManager.registerCallback(object : CarPropertyManager.CarPropertyEventCallback{
             override fun onChangeEvent(p0: CarPropertyValue<*>?) {
-                updateDiagnostic("battery", (p0?.value ?: 0.0) as Float)
+                updateDiagnostic("battery", ((p0?.value ?: 0.0) as Int).toFloat())
             }
 
             override fun onErrorEvent(p0: Int, p1: Int) {
@@ -104,7 +104,7 @@ class MainActivity : AppCompatActivity() {
 
         carPropertyManager.registerCallback(object : CarPropertyManager.CarPropertyEventCallback{
             override fun onChangeEvent(p0: CarPropertyValue<*>?) {
-                updateDiagnostic("tirePressure", (p0?.value ?: 0.0) as Float)
+                updateDiagnostic("tirePressure", ((p0?.value ?: 0.0) as Int).toFloat())
             }
 
             override fun onErrorEvent(p0: Int, p1: Int) {
