@@ -3,7 +3,10 @@
     xmlns:tools="http://schemas.android.com/tools"
      package="com.example.diagnostic_android_app">
 
-<uses-permission android:name="android.permission.CHANGE_OVERLAY_PACKAGES" />
+    <uses-permission android:name="android.permission.CHANGE_OVERLAY_PACKAGES" />
+    <uses-permission android:name="android.car.permission.READ_CAR_PROPERTY"/>
+    <uses-permission android:name="android.car.permission.WRITE_CAR_PROPERTY"/>
+    <uses-permission android:name="android.car.permission.CAR_VENDOR_EXTENSION"/>
 
     <application
         android:allowBackup="true"
