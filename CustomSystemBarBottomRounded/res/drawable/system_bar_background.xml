@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<shape xmlns:android="http://schemas.android.com/apk/res/android"
+    android:shape="rectangle">
+    
+    <!-- Make all corners rounded equally -->
+    <corners android:radius="200dp" />
+
+    <!-- Solid background color -->
+    <solid android:color="#000080" />
+
+    <!-- Optional: Remove padding unless you have a reason -->
+    <padding
+        android:left="0dp"
+        android:top="0dp"
+        android:right="0dp"
+        android:bottom="0dp" />
+</shape>
