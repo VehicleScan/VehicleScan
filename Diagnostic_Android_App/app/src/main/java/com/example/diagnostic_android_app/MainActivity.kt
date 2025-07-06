@@ -19,6 +19,10 @@ import android.car.Car
 import android.car.hardware.CarPropertyValue
 import android.car.hardware.property.CarPropertyManager
 import android.content.Intent
+import android.car.Car
+import android.car.hardware.CarPropertyValue
+import android.car.hardware.property.CarPropertyManager
+import android.content.Intent
 
 data class SpeedometerConfig(
     val minSpeed: Float = 0f,
@@ -44,7 +48,7 @@ class MainActivity : AppCompatActivity() {
     val VENDOR_EXTENSION_INIT_UDS_PROPERTY:Int = 0x2140010A
 
 
-
+    lateinit var car:Car
 
     lateinit var carPropertyManager:CarPropertyManager
 
@@ -54,10 +58,9 @@ class MainActivity : AppCompatActivity() {
         //hideSystemBars()
         setContentView(R.layout.activity_main)
 
-        val car =  Car.createCar(this.applicationContext)
-	
+        car = Car.createCar(this.applicationContext)
 
-        carPropertyManager = car!!.getCarManager(Car.PROPERTY_SERVICE) as CarPropertyManager
+        carPropertyManager = car.getCarManager(Car.PROPERTY_SERVICE) as CarPropertyManager
 
         carPropertyManager.registerCallback(object : CarPropertyManager.CarPropertyEventCallback{
             override fun onChangeEvent(p0: CarPropertyValue<*>?) {
