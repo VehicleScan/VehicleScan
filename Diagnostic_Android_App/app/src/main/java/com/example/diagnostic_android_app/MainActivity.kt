@@ -18,11 +18,6 @@ import kotlin.random.Random
 import android.car.Car
 import android.car.hardware.CarPropertyValue
 import android.car.hardware.property.CarPropertyManager
-import android.content.Intent
-import android.car.Car
-import android.car.hardware.CarPropertyValue
-import android.car.hardware.property.CarPropertyManager
-import android.content.Intent
 
 data class SpeedometerConfig(
     val minSpeed: Float = 0f,
@@ -210,7 +205,7 @@ class MainActivity : AppCompatActivity() {
         val temperatureFlow: StateFlow<Float> get() = _temperatureFlow
         val batteryFlow: StateFlow<Float> get() = _batteryFlow
         val tirePressureFlow: StateFlow<Float> get() = _tirePressureFlow
-        val config1 = SpeedometerConfig()
-        val config2 = SpeedometerConfig()
+        val config1 = SpeedometerConfig(0f,180f)
+        val config2 = SpeedometerConfig(6000f,7000f)
     }
 }

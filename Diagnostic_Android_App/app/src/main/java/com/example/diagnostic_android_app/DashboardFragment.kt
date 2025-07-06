@@ -24,7 +24,6 @@ class DashboardFragment : Fragment(R.layout.fragment_dashboard) {
                 minSpeed = MainActivity.config1.minSpeed
                 maxSpeed = MainActivity.config1.maxSpeed
                 setSpeedometerColor(MainActivity.config1.color)
-                trianglesColor = Color.parseColor("#333333")
                 indicator.width = 15f
                 indicator.color = Color.WHITE
                 speedTo(MainActivity.speed1Flow.value, 0)
