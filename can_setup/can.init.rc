@@ -1,0 +1,11 @@
+on boot
+    exec - root -- /system/bin/ip link set can0 down
+    exec - root -- /system/bin/ip link set can0 type can bitrate 500000
+    exec - root -- /system/bin/ip link set can0 up
+
+service can_setup /vendor/bin/can_setup
+    class core
+    user root
+    group root
+    oneshot
+    seclabel u:r:can_setup:s0

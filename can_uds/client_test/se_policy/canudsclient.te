@@ -1,0 +1,25 @@
+# canudsclient.te
+type canudsclient, domain;
+type canudsclient_exec, exec_type, vendor_file_type, file_type;
+
+init_daemon_domain(canudsclient)
+
+# Minimal required CAN socket permissions
+allow canudsclient self:can_socket {
+    create
+    setopt
+    write
+    read
+    bind
+};
+
+# Allow only specific ioctl commands needed for CAN
+allowxperm canudsclient self:can_socket ioctl {
+    0x8901   # SIOCGIFINDEX - get interface index
+    0x8902   # SIOCGIFNAME - get interface name
+    0x8904   # SIOCGIFADDR - get interface address
+    0x8910   # SIOCGIFCONF - get interface configuration
+    0x89E0   # SIOCGSTAMP - get timestamp (if absolutely needed)
+    0x89E1   # SIOCGSTAMPNS - get timestamp (nanoseconds)
+    0x89E2   # SIOCGSTAMPNEW - get timestamp (new)
+};

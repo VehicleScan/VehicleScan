@@ -1,0 +1,18 @@
+cc_binary {
+    name: "canUdsServiceHandler",
+    vendor: true,
+    srcs: ["main.cpp"],
+    cflags: [
+        "-Wall",
+        "-Werror",
+        "-Wextra",
+        "-fexceptions",
+    ],
+    shared_libs: [
+        "libbase",
+        "liblog",
+        "libcantp",
+        "libcanudstpserver"
+    ],
+    stl: "c++_shared",
+}
