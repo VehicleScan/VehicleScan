@@ -15,9 +15,9 @@ import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.launch
 import kotlin.random.Random
-import android.car.Car
-import android.car.hardware.CarPropertyValue
-import android.car.hardware.property.CarPropertyManager
+//import android.car.Car
+//import android.car.hardware.CarPropertyValue
+//import android.car.hardware.property.CarPropertyManager
 
 data class SpeedometerConfig(
     val minSpeed: Float = 0f,
@@ -45,7 +45,7 @@ class MainActivity : AppCompatActivity() {
 
 
 
-    lateinit var carPropertyManager:CarPropertyManager
+//    lateinit var carPropertyManager:CarPropertyManager
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -53,64 +53,64 @@ class MainActivity : AppCompatActivity() {
         //hideSystemBars()
         setContentView(R.layout.activity_main)
 
-        val car = Car.createCar(this.applicationContext)
-
-        carPropertyManager = car!!.getCarManager(Car.PROPERTY_SERVICE) as CarPropertyManager
-
-        carPropertyManager.registerCallback(object : CarPropertyManager.CarPropertyEventCallback{
-            override fun onChangeEvent(p0: CarPropertyValue<*>?) {
-                val value = p0?.value as? Int ?: 0
-                updateSpeedometer(0, value.toFloat())            }
-
-            override fun onErrorEvent(p0: Int, p1: Int) {
-                Log.i("Prop Error", "$p0 , $p1")
-            }
-
-        },VENDOR_EXTENSION_RPM_UDS_PROPERTY, CarPropertyManager.SENSOR_RATE_FASTEST)
-
-        carPropertyManager.registerCallback(object : CarPropertyManager.CarPropertyEventCallback{
-            override fun onChangeEvent(p0: CarPropertyValue<*>?) {
-                val value = p0?.value as? Int ?: 0
-                updateSpeedometer(1, value.toFloat())            }
-
-            override fun onErrorEvent(p0: Int, p1: Int) {
-                Log.i("Prop Error", "$p0 , $p1")
-            }
-
-        },VENDOR_EXTENSION_SPEED_UDS_PROPERTY, CarPropertyManager.SENSOR_RATE_FASTEST)
-
-        carPropertyManager.registerCallback(object : CarPropertyManager.CarPropertyEventCallback{
-            override fun onChangeEvent(p0: CarPropertyValue<*>?) {
-                updateDiagnostic("temperature", ((p0?.value ?: 0.0) as Int).toFloat())
-            }
-
-            override fun onErrorEvent(p0: Int, p1: Int) {
-                Log.i("Prop Error", "$p0 , $p1")
-            }
-
-        },VENDOR_EXTENSION_OILTEMP_UDS_PROPERTY, CarPropertyManager.SENSOR_RATE_FASTEST)
-
-        carPropertyManager.registerCallback(object : CarPropertyManager.CarPropertyEventCallback{
-            override fun onChangeEvent(p0: CarPropertyValue<*>?) {
-                updateDiagnostic("battery", ((p0?.value ?: 0.0) as Int).toFloat())
-            }
-
-            override fun onErrorEvent(p0: Int, p1: Int) {
-                Log.i("Prop Error", "$p0 , $p1")
-            }
-
-        },VENDOR_EXTENSION_AIRFLOW_UDS_PROPERTY, CarPropertyManager.SENSOR_RATE_FASTEST)
-
-        carPropertyManager.registerCallback(object : CarPropertyManager.CarPropertyEventCallback{
-            override fun onChangeEvent(p0: CarPropertyValue<*>?) {
-                updateDiagnostic("tirePressure", ((p0?.value ?: 0.0) as Int).toFloat())
-            }
-
-            override fun onErrorEvent(p0: Int, p1: Int) {
-                Log.i("Prop Error", "$p0 , $p1")
-            }
-
-        },VENDOR_EXTENSION_TIREPRES_UDS_PROPERTY, CarPropertyManager.SENSOR_RATE_FASTEST)
+//        val car = Car.createCar(this.applicationContext)
+//
+//        carPropertyManager = car!!.getCarManager(Car.PROPERTY_SERVICE) as CarPropertyManager
+//
+//        carPropertyManager.registerCallback(object : CarPropertyManager.CarPropertyEventCallback{
+//            override fun onChangeEvent(p0: CarPropertyValue<*>?) {
+//                val value = p0?.value as? Int ?: 0
+//                updateSpeedometer(0, value.toFloat())            }
+//
+//            override fun onErrorEvent(p0: Int, p1: Int) {
+//                Log.i("Prop Error", "$p0 , $p1")
+//            }
+//
+//        },VENDOR_EXTENSION_RPM_UDS_PROPERTY, CarPropertyManager.SENSOR_RATE_FASTEST)
+//
+//        carPropertyManager.registerCallback(object : CarPropertyManager.CarPropertyEventCallback{
+//            override fun onChangeEvent(p0: CarPropertyValue<*>?) {
+//                val value = p0?.value as? Int ?: 0
+//                updateSpeedometer(1, value.toFloat())            }
+//
+//            override fun onErrorEvent(p0: Int, p1: Int) {
+//                Log.i("Prop Error", "$p0 , $p1")
+//            }
+//
+//        },VENDOR_EXTENSION_SPEED_UDS_PROPERTY, CarPropertyManager.SENSOR_RATE_FASTEST)
+//
+//        carPropertyManager.registerCallback(object : CarPropertyManager.CarPropertyEventCallback{
+//            override fun onChangeEvent(p0: CarPropertyValue<*>?) {
+//                updateDiagnostic("temperature", ((p0?.value ?: 0.0) as Int).toFloat())
+//            }
+//
+//            override fun onErrorEvent(p0: Int, p1: Int) {
+//                Log.i("Prop Error", "$p0 , $p1")
+//            }
+//
+//        },VENDOR_EXTENSION_OILTEMP_UDS_PROPERTY, CarPropertyManager.SENSOR_RATE_FASTEST)
+//
+//        carPropertyManager.registerCallback(object : CarPropertyManager.CarPropertyEventCallback{
+//            override fun onChangeEvent(p0: CarPropertyValue<*>?) {
+//                updateDiagnostic("battery", ((p0?.value ?: 0.0) as Int).toFloat())
+//            }
+//
+//            override fun onErrorEvent(p0: Int, p1: Int) {
+//                Log.i("Prop Error", "$p0 , $p1")
+//            }
+//
+//        },VENDOR_EXTENSION_AIRFLOW_UDS_PROPERTY, CarPropertyManager.SENSOR_RATE_FASTEST)
+//
+//        carPropertyManager.registerCallback(object : CarPropertyManager.CarPropertyEventCallback{
+//            override fun onChangeEvent(p0: CarPropertyValue<*>?) {
+//                updateDiagnostic("tirePressure", ((p0?.value ?: 0.0) as Int).toFloat())
+//            }
+//
+//            override fun onErrorEvent(p0: Int, p1: Int) {
+//                Log.i("Prop Error", "$p0 , $p1")
+//            }
+//
+//        },VENDOR_EXTENSION_TIREPRES_UDS_PROPERTY, CarPropertyManager.SENSOR_RATE_FASTEST)
 
 
 
@@ -134,22 +134,22 @@ class MainActivity : AppCompatActivity() {
 //            }
 //        }
 
-        lifecycleScope.launch {
-            while (true) {
-
-                carPropertyManager.setIntProperty(VENDOR_EXTENSION_RPM_UDS_PROPERTY,0,1)
-
-                carPropertyManager.setIntProperty(VENDOR_EXTENSION_SPEED_UDS_PROPERTY,0,1)
-
-                carPropertyManager.setIntProperty(VENDOR_EXTENSION_OILTEMP_UDS_PROPERTY,0,1)
-
-                carPropertyManager.setIntProperty(VENDOR_EXTENSION_AIRFLOW_UDS_PROPERTY,0,1)
-
-                carPropertyManager.setIntProperty(VENDOR_EXTENSION_TIREPRES_UDS_PROPERTY,0,1)
-
-                kotlinx.coroutines.delay(200)
-            }
-        }
+//        lifecycleScope.launch {
+//            while (true) {
+//
+//                carPropertyManager.setIntProperty(VENDOR_EXTENSION_RPM_UDS_PROPERTY,0,1)
+//
+//                carPropertyManager.setIntProperty(VENDOR_EXTENSION_SPEED_UDS_PROPERTY,0,1)
+//
+//                carPropertyManager.setIntProperty(VENDOR_EXTENSION_OILTEMP_UDS_PROPERTY,0,1)
+//
+//                carPropertyManager.setIntProperty(VENDOR_EXTENSION_AIRFLOW_UDS_PROPERTY,0,1)
+//
+//                carPropertyManager.setIntProperty(VENDOR_EXTENSION_TIREPRES_UDS_PROPERTY,0,1)
+//
+//                kotlinx.coroutines.delay(200)
+//            }
+//        }
 
         val navHostFragment =
             supportFragmentManager.findFragmentById(R.id.nav_host_fragment) as? NavHostFragment
@@ -205,7 +205,7 @@ class MainActivity : AppCompatActivity() {
         val temperatureFlow: StateFlow<Float> get() = _temperatureFlow
         val batteryFlow: StateFlow<Float> get() = _batteryFlow
         val tirePressureFlow: StateFlow<Float> get() = _tirePressureFlow
-        val config1 = SpeedometerConfig(0f,180f)
-        val config2 = SpeedometerConfig(6000f,7000f)
+        val config1 = SpeedometerConfig(0f,220f)
+        val config2 = SpeedometerConfig(0f,8f)
     }
 }

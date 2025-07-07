@@ -4,16 +4,16 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:background="@drawable/gradient_background"
-    android:padding="16dp">
+    android:padding="@dimen/_16sdp">
 
     <TextView
         android:id="@+id/title"
-        android:layout_width="296dp"
-        android:layout_height="58dp"
-        android:layout_marginBottom="12dp"
+        android:layout_width="@dimen/_296sdp"
+        android:layout_height="@dimen/_58sdp"
+        android:layout_marginBottom="@dimen/_12sdp"
         android:text="@string/dtc_items"
         android:textColor="#FFFFFF"
-        android:textSize="35sp"
+        android:textSize="@dimen/_35sdp"
         android:gravity="center"
         android:textStyle="bold" />
 
@@ -22,7 +22,7 @@
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1"
-        android:paddingBottom="24dp" />
+        android:paddingBottom="@dimen/_24sdp" />
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -31,49 +31,49 @@
 
         <Button
             android:id="@+id/clear_button"
-            android:layout_width="293dp"
-            android:layout_height="71dp"
+            android:layout_width="@dimen/_293sdp"
+            android:layout_height="@dimen/_71sdp"
             android:layout_gravity="center"
-            android:layout_marginTop="16dp"
+            android:layout_marginTop="@dimen/_16sdp"
             android:backgroundTint="@color/blue_soft"
             android:gravity="center"
             android:text="Clear"
             android:textColor="@color/white"
-            android:textSize="25sp" />
+            android:textSize="@dimen/_25sdp" />
 
         <Space
-            android:layout_width="112dp"
+            android:layout_width="@dimen/_112sdp"
             android:layout_height="match_parent"
             android:layout_weight="1" />
 
         <Button
             android:id="@+id/send_sms_button"
-            android:layout_width="274dp"
-            android:layout_height="80dp"
+            android:layout_width="@dimen/_274sdp"
+            android:layout_height="@dimen/_80sdp"
             android:layout_gravity="center"
-            android:layout_marginTop="16dp"
+            android:layout_marginTop="@dimen/_16sdp"
             android:backgroundTint="@color/blue_soft"
             android:gravity="center"
             android:text="Send SMS"
             android:textColor="@color/white"
-            android:textSize="25sp" />
+            android:textSize="@dimen/_25sdp" />
 
         <Space
-            android:layout_width="75dp"
-            android:layout_height="109dp"
+            android:layout_width="@dimen/_75sdp"
+            android:layout_height="@dimen/_109sdp"
             android:layout_weight="1" />
 
         <Button
             android:id="@+id/send_report_button"
-            android:layout_width="280dp"
-            android:layout_height="82dp"
+            android:layout_width="@dimen/_280sdp"
+            android:layout_height="@dimen/_82sdp"
             android:layout_gravity="center"
-            android:layout_marginTop="16dp"
+            android:layout_marginTop="@dimen/_16sdp"
             android:backgroundTint="@color/blue_soft"
             android:gravity="center"
             android:text="Send Report"
             android:textColor="@color/white"
-            android:textSize="25sp" />
+            android:textSize="@dimen/_25sdp" />
 
         <Space
             android:layout_width="wrap_content"
@@ -81,6 +81,5 @@
             android:layout_weight="1" />
 
     </LinearLayout>
-
 
 </LinearLayout>

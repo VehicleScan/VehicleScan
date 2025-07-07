@@ -2,9 +2,9 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_marginBottom="12dp"
-    app:cardElevation="4dp"
-    app:cardCornerRadius="8dp"
+    android:layout_marginBottom="@dimen/_12sdp"
+    app:cardElevation="@dimen/_4sdp"
+    app:cardCornerRadius="@dimen/_8sdp"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <LinearLayout
@@ -12,20 +12,20 @@
         android:layout_height="match_parent"
         android:gravity="center_vertical"
         android:orientation="horizontal"
-        android:padding="16dp">
+        android:padding="@dimen/_16sdp">
 
         <ImageView
             android:id="@+id/icon"
-            android:layout_width="54dp"
-            android:layout_height="59dp"
-            android:layout_marginEnd="12dp"/>
+            android:layout_width="@dimen/_54sdp"
+            android:layout_height="@dimen/_59sdp"
+            android:layout_marginEnd="@dimen/_12sdp"/>
 
         <TextView
             android:id="@+id/name"
             android:layout_width="match_parent"
-            android:layout_height="60dp"
+            android:layout_height="@dimen/_60sdp"
             android:textColor="#333333"
-            android:textSize="25sp"
+            android:textSize="@dimen/_25sdp"
             android:gravity="center"
             android:textStyle="bold" />
     </LinearLayout>
