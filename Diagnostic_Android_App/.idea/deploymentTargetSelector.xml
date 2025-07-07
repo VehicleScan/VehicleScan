@@ -4,10 +4,10 @@
     <selectionStates>
       <SelectionState runConfigName="app">
         <option name="selectionMode" value="DROPDOWN" />
-        <DropdownSelection timestamp="2025-07-07T11:08:58.254993285Z">
+        <DropdownSelection timestamp="2025-07-07T18:59:28.519345780Z">
           <Target type="DEFAULT_BOOT">
             <handle>
-              <DeviceId pluginId="LocalEmulator" identifier="path=/home/yara/.android/avd/Automotive_1408p_landscape_with_Google_Play.avd" />
+              <DeviceId pluginId="PhysicalDevice" identifier="serial=1000000038255004" />
             </handle>
           </Target>
         </DropdownSelection>
