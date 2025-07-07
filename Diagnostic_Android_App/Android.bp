@@ -1,11 +1,11 @@
 android_library_import {
     name: "sdp_android",
-    aars: ["external/sdp-android-1.1.1.aar"],
+    aars: ["libs/sdp-android-1.1.1.aar"],
 }
 
 android_library_import {
     name: "ssp_android",
-    aars: ["external/ssp-android-1.1.1.aar"],
+    aars: ["libs/ssp-android-1.1.1.aar"],
 }
 
 
