@@ -22,7 +22,7 @@ import android.car.hardware.property.CarPropertyManager
 data class SpeedometerConfig(
     val minSpeed: Float = 0f,
     val maxSpeed: Float = 100f,
-    val color: Int = Color.BLUE
+//    val color: Int = Color.BLUE
 )
 
 class MainActivity : AppCompatActivity() {

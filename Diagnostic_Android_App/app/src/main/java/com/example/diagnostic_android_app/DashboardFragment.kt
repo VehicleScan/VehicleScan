@@ -23,9 +23,9 @@ class DashboardFragment : Fragment(R.layout.fragment_dashboard) {
             post {
                 minSpeed = MainActivity.config1.minSpeed
                 maxSpeed = MainActivity.config1.maxSpeed
-                setSpeedometerColor(MainActivity.config1.color)
+//                setSpeedometerColor(MainActivity.config1.color)
                 indicator.width = 15f
-                indicator.color = Color.WHITE
+//                indicator.color = Color.WHITE
                 speedTo(MainActivity.speed1Flow.value, 0)
                 withTremble = false
             }
@@ -34,10 +34,10 @@ class DashboardFragment : Fragment(R.layout.fragment_dashboard) {
             post {
                 minSpeed = MainActivity.config2.minSpeed
                 maxSpeed = MainActivity.config2.maxSpeed
-                setSpeedometerColor(MainActivity.config2.color)
+//                setSpeedometerColor(MainActivity.config2.color)
                 trianglesColor = Color.parseColor("#333333")
                 indicator.width = 15f
-                indicator.color = Color.WHITE
+//                indicator.color = Color.WHITE
                 speedTo(MainActivity.speed2Flow.value, 0)
                 withTremble = false
             }
