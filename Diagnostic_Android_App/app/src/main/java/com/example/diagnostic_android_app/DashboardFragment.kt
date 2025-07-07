@@ -24,7 +24,6 @@ class DashboardFragment : Fragment(R.layout.fragment_dashboard) {
             post {
                 minSpeed = MainActivity.config1.minSpeed
                 maxSpeed = MainActivity.config1.maxSpeed
-                indicator.width = 15f
                 speedTo(MainActivity.speed1Flow.value, 0)
                 withTremble = false
             }
@@ -33,8 +32,6 @@ class DashboardFragment : Fragment(R.layout.fragment_dashboard) {
             post {
                 minSpeed = MainActivity.config2.minSpeed
                 maxSpeed = MainActivity.config2.maxSpeed
-                trianglesColor = Color.parseColor("#333333")
-                indicator.width = 15f
                 speedTo(MainActivity.speed2Flow.value, 0)
                 withTremble = false
             }
