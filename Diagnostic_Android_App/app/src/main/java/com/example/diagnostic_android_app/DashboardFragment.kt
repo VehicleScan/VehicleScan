@@ -4,6 +4,7 @@ import android.graphics.Color
 import android.os.Bundle
 import android.view.View
 import android.widget.TextView
+import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
@@ -23,9 +24,7 @@ class DashboardFragment : Fragment(R.layout.fragment_dashboard) {
             post {
                 minSpeed = MainActivity.config1.minSpeed
                 maxSpeed = MainActivity.config1.maxSpeed
-//                setSpeedometerColor(MainActivity.config1.color)
                 indicator.width = 15f
-//                indicator.color = Color.WHITE
                 speedTo(MainActivity.speed1Flow.value, 0)
                 withTremble = false
             }
@@ -34,10 +33,8 @@ class DashboardFragment : Fragment(R.layout.fragment_dashboard) {
             post {
                 minSpeed = MainActivity.config2.minSpeed
                 maxSpeed = MainActivity.config2.maxSpeed
-//                setSpeedometerColor(MainActivity.config2.color)
                 trianglesColor = Color.parseColor("#333333")
                 indicator.width = 15f
-//                indicator.color = Color.WHITE
                 speedTo(MainActivity.speed2Flow.value, 0)
                 withTremble = false
             }
@@ -57,19 +54,46 @@ class DashboardFragment : Fragment(R.layout.fragment_dashboard) {
                 }
                 launch {
                     MainActivity.temperatureFlow.collect { value ->
-                        temperatureText?.text = String.format("%.1f°F", value)
+                        val temp = value.coerceIn(-40f, 215f)
+                        temperatureText?.text = String.format("%.1f°C", temp)
+
+                        val color = when {
+                            temp > 115f -> R.color.critical_red
+                            temp > 105f -> R.color.warning_orange
+                            temp < 70f -> R.color.warning_blue
+                            else -> R.color.normal_green
+                        }
+                        temperatureText?.setTextColor(ContextCompat.getColor(requireContext(), color))
                     }
                 }
+
                 launch {
-                    MainActivity.batteryFlow.collect { value ->
-                        batteryText?.text = String.format("%.1fV", value)
+                    MainActivity.Air_flow_Flow.collect { value ->
+                        val airFlow = value.coerceIn(0f, 655f)
+                        batteryText?.text = String.format("%.1f", airFlow)
+
+                        val color = when {
+                            airFlow > 450f || airFlow < 50f -> R.color.warning_orange
+                            else -> R.color.normal_green
+                        }
+                        batteryText?.setTextColor(ContextCompat.getColor(requireContext(), color))
                     }
                 }
+
                 launch {
                     MainActivity.tirePressureFlow.collect { value ->
-                        tirePressureText?.text = String.format("%.1f PSI", value)
+                        val pressure = value.coerceIn(0f, 42f)
+                        tirePressureText?.text = String.format("%.1f PSI", pressure)
+
+                        val color = when {
+                            pressure < 28f || pressure > 36f -> R.color.critical_red
+                            pressure < 30f || pressure > 35f -> R.color.warning_orange
+                            else -> R.color.normal_green
+                        }
+                        tirePressureText?.setTextColor(ContextCompat.getColor(requireContext(), color))
                     }
                 }
+
 
             }
         }
