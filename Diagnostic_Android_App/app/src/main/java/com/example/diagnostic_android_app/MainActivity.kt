@@ -1,7 +1,6 @@
 package com.example.diagnostic_android_app
 
 import android.content.pm.ActivityInfo
-import android.graphics.Color
 import android.os.Bundle
 import android.util.Log
 import android.view.View
@@ -14,16 +13,14 @@ import com.google.android.material.bottomnavigation.BottomNavigationView
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.launch
-import kotlin.random.Random
 import android.car.Car
 import android.car.hardware.CarPropertyValue
 import android.car.hardware.property.CarPropertyManager
-import android.content.Intent
 
 data class SpeedometerConfig(
     val minSpeed: Float = 0f,
     val maxSpeed: Float = 100f,
-    val color: Int = Color.BLUE
+//    val color: Int = Color.BLUE
 )
 
 class MainActivity : AppCompatActivity() {
@@ -148,7 +145,7 @@ class MainActivity : AppCompatActivity() {
 
                 carPropertyManager.setIntProperty(VENDOR_EXTENSION_TIREPRES_UDS_PROPERTY,0,1)
 
-                kotlinx.coroutines.delay(100)
+                kotlinx.coroutines.delay(200)
             }
         }
 
@@ -204,9 +201,9 @@ class MainActivity : AppCompatActivity() {
         val speed1Flow: StateFlow<Float> get() = _speed1Flow
         val speed2Flow: StateFlow<Float> get() = _speed2Flow
         val temperatureFlow: StateFlow<Float> get() = _temperatureFlow
-        val batteryFlow: StateFlow<Float> get() = _batteryFlow
+        val Air_flow_Flow: StateFlow<Float> get() = _batteryFlow
         val tirePressureFlow: StateFlow<Float> get() = _tirePressureFlow
-        val config1 = SpeedometerConfig()
-        val config2 = SpeedometerConfig()
+        val config1 = SpeedometerConfig(0f,255f)
+        val config2 = SpeedometerConfig(0f,8f)
     }
 }

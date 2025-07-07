@@ -4,22 +4,82 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:background="@drawable/gradient_background"
-    android:padding="16dp">
+    android:padding="@dimen/_16sdp">
 
     <TextView
         android:id="@+id/title"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="@dimen/_296sdp"
+        android:layout_height="@dimen/_58sdp"
+        android:layout_marginBottom="@dimen/_12sdp"
         android:text="@string/dtc_items"
         android:textColor="#FFFFFF"
-        android:textSize="24sp"
-        android:textStyle="bold"
-        android:layout_marginBottom="12dp" />
+        android:textSize="@dimen/_35sdp"
+        android:gravity="center"
+        android:textStyle="bold" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/uds_list"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1"
-        android:paddingBottom="24dp" />
+        android:paddingBottom="@dimen/_24sdp" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/clear_button"
+            android:layout_width="@dimen/_293sdp"
+            android:layout_height="@dimen/_71sdp"
+            android:layout_gravity="center"
+            android:layout_marginTop="@dimen/_16sdp"
+            android:backgroundTint="@color/blue_soft"
+            android:gravity="center"
+            android:text="Clear"
+            android:textColor="@color/white"
+            android:textSize="@dimen/_25sdp" />
+
+        <Space
+            android:layout_width="@dimen/_112sdp"
+            android:layout_height="match_parent"
+            android:layout_weight="1" />
+
+        <Button
+            android:id="@+id/send_sms_button"
+            android:layout_width="@dimen/_274sdp"
+            android:layout_height="@dimen/_80sdp"
+            android:layout_gravity="center"
+            android:layout_marginTop="@dimen/_16sdp"
+            android:backgroundTint="@color/blue_soft"
+            android:gravity="center"
+            android:text="Send SMS"
+            android:textColor="@color/white"
+            android:textSize="@dimen/_25sdp" />
+
+        <Space
+            android:layout_width="@dimen/_75sdp"
+            android:layout_height="@dimen/_109sdp"
+            android:layout_weight="1" />
+
+        <Button
+            android:id="@+id/send_report_button"
+            android:layout_width="@dimen/_280sdp"
+            android:layout_height="@dimen/_82sdp"
+            android:layout_gravity="center"
+            android:layout_marginTop="@dimen/_16sdp"
+            android:backgroundTint="@color/blue_soft"
+            android:gravity="center"
+            android:text="Send Report"
+            android:textColor="@color/white"
+            android:textSize="@dimen/_25sdp" />
+
+        <Space
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1" />
+
+    </LinearLayout>
+
 </LinearLayout>
