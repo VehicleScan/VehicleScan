@@ -22,22 +22,22 @@
 
             <com.github.anastr.speedviewlib.AwesomeSpeedometer
                 android:id="@+id/speedometer1"
-                android:layout_width="399dp"
-                android:layout_height="400dp"
-                app:sv_speedometerWidth="70dp"
-                app:sv_indicatorWidth="10dp"
-                app:sv_tickRotation="false"
+                android:layout_width="match_parent"
+                android:layout_height="316dp"
                 app:sv_indicatorColor="@color/white"
-                app:sv_marksNumber="@integer/material_motion_duration_medium_1"
+                app:sv_indicatorWidth="10dp"
                 app:sv_markHeight="2sp"
+                app:sv_marksNumber="@integer/material_motion_duration_medium_1"
                 app:sv_speedTextColor="@color/white"
+                app:sv_speedTextPosition="CENTER"
                 app:sv_speedTextSize="20dp"
-                app:sv_withIndicatorLight="true"
+                app:sv_speedometerColor="@color/blue_soft"
+                app:sv_speedometerWidth="70dp"
+                app:sv_tickRotation="false"
+                app:sv_trianglesColor="@color/white"
                 app:sv_unit="Km"
                 app:sv_unitTextSize="10dp"
-                app:sv_speedTextPosition="CENTER"
-                app:sv_speedometerColor="@color/blue_soft"
-                app:sv_trianglesColor="@color/white" />
+                app:sv_withIndicatorLight="true" />
         </LinearLayout>
 
         <!-- Logo -->
@@ -59,20 +59,20 @@
 
             <com.github.anastr.speedviewlib.AwesomeSpeedometer
                 android:id="@+id/speedometer2"
-                android:layout_width="428dp"
-                android:layout_height="406dp"
-                app:sv_speedometerColor="@color/blue_soft"
-                app:sv_indicatorWidth="10dp"
-                app:sv_tickRotation="false"
+                android:layout_width="match_parent"
+                android:layout_height="361dp"
                 app:sv_indicatorColor="@color/white"
-                app:sv_marksNumber="@integer/material_motion_duration_medium_1"
+                app:sv_indicatorWidth="10dp"
                 app:sv_markHeight="2sp"
-                app:sv_unitTextSize="10dp"
+                app:sv_marksNumber="@integer/material_motion_duration_medium_1"
                 app:sv_speedTextColor="@color/white"
-                app:sv_speedTextSize="20dp"
-                app:sv_unit="RPM"
                 app:sv_speedTextPosition="CENTER"
-                app:sv_trianglesColor="@color/white" />
+                app:sv_speedTextSize="20dp"
+                app:sv_speedometerColor="@color/blue_soft"
+                app:sv_tickRotation="false"
+                app:sv_trianglesColor="@color/white"
+                app:sv_unit="RPM"
+                app:sv_unitTextSize="10dp" />
         </LinearLayout>
     </LinearLayout>
 
@@ -93,26 +93,28 @@
             android:padding="8dp">
 
             <ImageView
-                android:layout_width="132dp"
-                android:layout_height="50dp"
+                android:layout_width="284dp"
+                android:layout_height="118dp"
                 android:contentDescription="@string/engine"
                 android:src="@drawable/temperaturecontrol2" />
 
             <TextView
-                android:layout_width="wrap_content"
+                android:layout_width="166dp"
                 android:layout_height="wrap_content"
                 android:text="@string/Temperature"
                 android:textColor="#FFFFFF"
-                android:textSize="14sp" />
+                android:textSize="25sp"
+                android:gravity="center"/>
 
             <TextView
                 android:id="@+id/temperature_txt"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="173dp"
+                android:layout_height="31dp"
                 android:text="205°F"
                 android:textColor="#FFFFFF"
-                android:textSize="14sp"
-                android:textStyle="bold" />
+                android:textStyle="bold"
+                android:textSize="25sp"
+                android:gravity="center"/>
         </LinearLayout>
 
         <!-- Battery Diagnostic -->
@@ -125,8 +127,8 @@
             android:padding="8dp">
 
             <ImageView
-                android:layout_width="132dp"
-                android:layout_height="50dp"
+                android:layout_width="240dp"
+                android:layout_height="116dp"
                 android:contentDescription="car air flow"
                 android:src="@drawable/carairflow2" />
 
@@ -135,7 +137,8 @@
                 android:layout_height="wrap_content"
                 android:text="Air Flow"
                 android:textColor="#FFFFFF"
-                android:textSize="14sp" />
+                android:textSize="25sp"
+                android:gravity="center" />
 
             <TextView
                 android:id="@+id/BatteryLevel_txt"
@@ -143,7 +146,8 @@
                 android:layout_height="wrap_content"
                 android:text="600"
                 android:textColor="#FFFFFF"
-                android:textSize="14sp"
+                android:textSize="25sp"
+                android:gravity="center"
                 android:textStyle="bold" />
         </LinearLayout>
 
@@ -157,8 +161,8 @@
             android:padding="8dp">
 
             <ImageView
-                android:layout_width="132dp"
-                android:layout_height="50dp"
+                android:layout_width="215dp"
+                android:layout_height="76dp"
                 android:contentDescription="@string/TirePressure"
                 android:src="@drawable/wheelpressure2" />
 
@@ -167,7 +171,8 @@
                 android:layout_height="wrap_content"
                 android:text="@string/TirePressure"
                 android:textColor="#FFFFFF"
-                android:textSize="14sp" />
+                android:textSize="25sp"
+                android:gravity="center"/>
 
             <TextView
                 android:id="@+id/TirePressure_txt"
@@ -175,7 +180,8 @@
                 android:layout_height="wrap_content"
                 android:text="P0140"
                 android:textColor="#FFFFFF"
-                android:textSize="14sp"
+                android:textSize="25sp"
+                android:gravity="center"
                 android:textStyle="bold" />
         </LinearLayout>
     </LinearLayout>
