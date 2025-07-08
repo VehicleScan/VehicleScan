@@ -36,10 +36,6 @@ class MainActivity : AppCompatActivity() {
 
     val VENDOR_EXTENSION_TIREPRES_UDS_PROPERTY:Int = 0x21400108
 
-    val VENDOR_EXTENSION_STRING_DTC_PROPERTY:Int = 0x21100109
-
-    val VENDOR_EXTENSION_INIT_UDS_PROPERTY:Int = 0x2140010A
-
 
 
 
@@ -109,6 +105,8 @@ class MainActivity : AppCompatActivity() {
             }
 
         },VENDOR_EXTENSION_TIREPRES_UDS_PROPERTY, CarPropertyManager.SENSOR_RATE_FASTEST)
+
+
 
 
 

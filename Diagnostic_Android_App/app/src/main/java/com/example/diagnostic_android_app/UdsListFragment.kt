@@ -1,13 +1,19 @@
 package com.example.diagnostic_android_app
 
+import android.car.Car
+import android.car.hardware.CarPropertyValue
+import android.car.hardware.property.CarPropertyManager
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import android.widget.Button
 import android.widget.Toast
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import kotlinx.coroutines.launch
 
 class UdsListFragment : Fragment(R.layout.fragment_uds_list) {
 
@@ -17,19 +23,71 @@ class UdsListFragment : Fragment(R.layout.fragment_uds_list) {
 
     private lateinit var wifiSender: WifiSender
 
+    val VENDOR_EXTENSION_STRING_DTC_PROPERTY:Int = 0x21100109
+
+    val VENDOR_EXTENSION_INIT_UDS_PROPERTY:Int = 0x2140010A
+
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
+        val recycler:RecyclerView = view.findViewById(R.id.uds_list)
         wifiSender = WifiSender(requireContext())
+        val car = Car.createCar(context)
 
-        val recycler = view.findViewById<RecyclerView>(R.id.uds_list)
-        recycler?.apply {
-            layoutManager = LinearLayoutManager(requireContext())
-            adapter = UdsAdapter(UdsData.items.filter { it.exist == 1 }) { itemId ->
-                findNavController().navigate(
-                    R.id.action_uds_list_to_uds_detail,
-                    Bundle().apply { putInt("itemId", itemId) }
-                )
+        val carPropertyManager = car!!.getCarManager(Car.PROPERTY_SERVICE) as CarPropertyManager
+
+        carPropertyManager.registerCallback(object : CarPropertyManager.CarPropertyEventCallback{
+            override fun onChangeEvent(p0: CarPropertyValue<*>?) {
+                for (i in 1..8) {
+                    UdsData.updateExist(i,1)
+                }
+                // show all list items (dtcs)
+                recycler?.apply {
+                    layoutManager = LinearLayoutManager(requireContext())
+                    adapter = UdsAdapter(UdsData.items.filter { it.exist == 1 }) { itemId ->
+                        findNavController().navigate(
+                            R.id.action_uds_list_to_uds_detail,
+                            Bundle().apply { putInt("itemId", itemId) }
+                        )
+                    }
+                }
+
+            }
+            override fun onErrorEvent(p0: Int, p1: Int) {
+                Log.i("Prop Error", "$p0 , $p1")
+            }
+
+        },VENDOR_EXTENSION_STRING_DTC_PROPERTY, CarPropertyManager.SENSOR_RATE_FASTEST)
+
+        carPropertyManager.registerCallback(object : CarPropertyManager.CarPropertyEventCallback{
+            override fun onChangeEvent(p0: CarPropertyValue<*>?) {
+                for (i in 1..8) {
+                    UdsData.updateExist(i,0)
+                }
+                // show all list items (dtcs)
+                recycler?.apply {
+                    layoutManager = LinearLayoutManager(requireContext())
+                    adapter = UdsAdapter(UdsData.items.filter { it.exist == 1 }) { itemId ->
+                        findNavController().navigate(
+                            R.id.action_uds_list_to_uds_detail,
+                            Bundle().apply { putInt("itemId", itemId) }
+                        )
+                    }
+                }
+            }
+
+            override fun onErrorEvent(p0: Int, p1: Int) {
+                Log.i("Prop Error", "$p0 , $p1")
+            }
+
+        },VENDOR_EXTENSION_INIT_UDS_PROPERTY, CarPropertyManager.SENSOR_RATE_FASTEST)
+
+
+        lifecycleScope.launch {
+            while (true) {
+
+                carPropertyManager.setIntProperty(VENDOR_EXTENSION_STRING_DTC_PROPERTY,0,1)
+                kotlinx.coroutines.delay(200)
             }
         }
 
@@ -54,6 +112,11 @@ class UdsListFragment : Fragment(R.layout.fragment_uds_list) {
                     }
                 }
             }
+        }
+
+        clear_btn.setOnClickListener {
+            carPropertyManager.setIntProperty(VENDOR_EXTENSION_INIT_UDS_PROPERTY,0,1)
+            // change status of all dtcs to be not exist
         }
 
         send_report_btn.setOnClickListener {
