@@ -1,0 +1,45 @@
+android_library_import {
+    name: "sdp_android",
+    aars: ["libs/sdp-android-1.1.1.aar"],
+}
+
+android_library_import {
+    name: "ssp_android",
+    aars: ["libs/ssp-android-1.1.1.aar"],
+}
+
+
+android_app {
+    name: "DiagnosticApp",
+    srcs: ["app/src/main/java/com/example/diagnostic_android_app/*.kt"],
+    resource_dirs: ["app/src/main/res"],
+    manifest: "app/src/main/AndroidManifest.xml",
+    
+    platform_apis: true,
+    privileged: true,
+    installable: true,
+    
+    static_libs: [
+        "androidx.appcompat_appcompat",
+        "androidx.lifecycle_lifecycle-runtime-ktx",
+        "com.google.android.material_material",
+        "androidx.navigation_navigation-fragment-ktx",
+        "androidx.navigation_navigation-ui-ktx",
+        "androidx.activity_activity",
+        "androidx-constraintlayout_constraintlayout",
+        "SpeedViewLib",
+        "kotlin-stdlib",
+        "android.car",
+        "com.android.car.internal.dep",
+        "kotlinx-coroutines-android",
+        "sdp_android",
+        "ssp_android",
+    ],
+    
+    overrides: [
+        "Launcher2",
+        "Launcher3",
+        "Launcher3QuickStep",
+        "CarLauncher",
+    ],
+}
