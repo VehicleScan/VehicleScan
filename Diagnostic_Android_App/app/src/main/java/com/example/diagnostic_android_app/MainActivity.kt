@@ -134,15 +134,14 @@ class MainActivity : AppCompatActivity() {
             while (true) {
 
                 carPropertyManager.setIntProperty(VENDOR_EXTENSION_RPM_UDS_PROPERTY,0,1)
-
+                kotlinx.coroutines.delay(200)
                 carPropertyManager.setIntProperty(VENDOR_EXTENSION_SPEED_UDS_PROPERTY,0,1)
-
+                kotlinx.coroutines.delay(200)
                 carPropertyManager.setIntProperty(VENDOR_EXTENSION_OILTEMP_UDS_PROPERTY,0,1)
-
+                kotlinx.coroutines.delay(200)
                 carPropertyManager.setIntProperty(VENDOR_EXTENSION_AIRFLOW_UDS_PROPERTY,0,1)
-
+                kotlinx.coroutines.delay(200)
                 carPropertyManager.setIntProperty(VENDOR_EXTENSION_TIREPRES_UDS_PROPERTY,0,1)
-
                 kotlinx.coroutines.delay(200)
             }
         }
