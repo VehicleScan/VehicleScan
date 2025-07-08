@@ -38,20 +38,39 @@ class UdsListFragment : Fragment(R.layout.fragment_uds_list) {
 
         carPropertyManager.registerCallback(object : CarPropertyManager.CarPropertyEventCallback{
             override fun onChangeEvent(p0: CarPropertyValue<*>?) {
-                for (i in 1..8) {
-                    UdsData.updateExist(i,1)
-                }
-                // show all list items (dtcs)
-                recycler?.apply {
-                    layoutManager = LinearLayoutManager(requireContext())
-                    adapter = UdsAdapter(UdsData.items.filter { it.exist == 1 }) { itemId ->
-                        findNavController().navigate(
-                            R.id.action_uds_list_to_uds_detail,
-                            Bundle().apply { putInt("itemId", itemId) }
-                        )
-                    }
-                }
+                Log.i("TAG", "onChangeEvent: $p0 ")
+             if( ((p0?.value) as String).length > 20 )  {
+                 for (i in 1..8) {
+                     UdsData.updateExist(i, 1)
+                 }
+                 // show all list items (dtcs)
+                 recycler?.apply {
+                     layoutManager = LinearLayoutManager(requireContext())
+                     adapter = UdsAdapter(UdsData.items.filter { it.exist == 1 }) { itemId ->
+                         findNavController().navigate(
+                             R.id.action_uds_list_to_uds_detail,
+                             Bundle().apply { putInt("itemId", itemId) }
+                         )
+                     }
+                 }
+             }
+             else
+             {
+                 for (i in 1..8) {
+                     UdsData.updateExist(i, 0)
+                 }
+                 // show all list items (dtcs)
+                 recycler?.apply {
+                     layoutManager = LinearLayoutManager(requireContext())
+                     adapter = UdsAdapter(UdsData.items.filter { it.exist == 1 }) { itemId ->
+                         findNavController().navigate(
+                             R.id.action_uds_list_to_uds_detail,
+                             Bundle().apply { putInt("itemId", itemId) }
+                         )
+                     }
+                 }
 
+             }
             }
             override fun onErrorEvent(p0: Int, p1: Int) {
                 Log.i("Prop Error", "$p0 , $p1")
@@ -85,9 +104,8 @@ class UdsListFragment : Fragment(R.layout.fragment_uds_list) {
 
         lifecycleScope.launch {
             while (true) {
-
-                carPropertyManager.setIntProperty(VENDOR_EXTENSION_STRING_DTC_PROPERTY,0,1)
-                kotlinx.coroutines.delay(200)
+                carPropertyManager.setProperty<String>(String::class.java,VENDOR_EXTENSION_STRING_DTC_PROPERTY,0,"")
+                kotlinx.coroutines.delay(1000)
             }
         }
 
@@ -101,8 +119,7 @@ class UdsListFragment : Fragment(R.layout.fragment_uds_list) {
                 Toast.makeText(requireContext(), "Wi-Fi gateway not found", Toast.LENGTH_SHORT).show()
                 return@setOnClickListener
             }
-
-            val message = "01553524236:Service Center Message"
+            val message = "01553524236:Car Model: M4 User: Ahmed ${UdsData.items}"
             wifiSender.sendMessage(gatewayIp, message) { success, error ->
                 requireActivity().runOnUiThread {
                     if (success) {
