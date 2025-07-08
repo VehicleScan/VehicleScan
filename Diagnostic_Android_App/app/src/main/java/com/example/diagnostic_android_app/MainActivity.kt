@@ -58,7 +58,7 @@ class MainActivity : AppCompatActivity() {
         carPropertyManager.registerCallback(object : CarPropertyManager.CarPropertyEventCallback{
             override fun onChangeEvent(p0: CarPropertyValue<*>?) {
                 val value = p0?.value as? Int ?: 0
-                updateSpeedometer(0, value.toFloat())            }
+                updateSpeedometer(1, value.toFloat())            }
 
             override fun onErrorEvent(p0: Int, p1: Int) {
                 Log.i("Prop Error", "$p0 , $p1")
@@ -69,7 +69,7 @@ class MainActivity : AppCompatActivity() {
         carPropertyManager.registerCallback(object : CarPropertyManager.CarPropertyEventCallback{
             override fun onChangeEvent(p0: CarPropertyValue<*>?) {
                 val value = p0?.value as? Int ?: 0
-                updateSpeedometer(1, value.toFloat())            }
+                updateSpeedometer(0, value.toFloat())            }
 
             override fun onErrorEvent(p0: Int, p1: Int) {
                 Log.i("Prop Error", "$p0 , $p1")
@@ -186,8 +186,8 @@ class MainActivity : AppCompatActivity() {
 
     fun updateSpeedometer(index: Int, newSpeed: Float) {
         when (index) {
-            1 -> _speed1Flow.value = newSpeed
-            2 -> _speed2Flow.value = newSpeed
+            0 -> _speed1Flow.value = newSpeed
+            1 -> _speed2Flow.value = newSpeed
         }
     }
 

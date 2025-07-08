@@ -73,7 +73,7 @@
                 app:sv_speedometerColor="@color/blue_soft"
                 app:sv_tickRotation="false"
                 app:sv_trianglesColor="@color/white"
-                app:sv_unit="RPM"
+                app:sv_unit="x1000 RPM"
                 app:sv_textSize="14dp"
                 app:sv_unitTextSize="16sp" />
         </LinearLayout>
