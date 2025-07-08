@@ -1,6 +1,5 @@
 package com.example.diagnostic_android_app
 
-import android.graphics.Color
 import android.os.Bundle
 import android.view.View
 import android.widget.TextView
@@ -18,7 +17,7 @@ class DashboardFragment : Fragment(R.layout.fragment_dashboard) {
         val speedometer1 = view.findViewById<AwesomeSpeedometer>(R.id.speedometer1)
         val speedometer2 = view.findViewById<AwesomeSpeedometer>(R.id.speedometer2)
         val temperatureText = view.findViewById<TextView>(R.id.temperature_txt)
-        val batteryText = view.findViewById<TextView>(R.id.BatteryLevel_txt)
+        val AirFlowText = view.findViewById<TextView>(R.id.AirFlowLevel_txt)
         val tirePressureText = view.findViewById<TextView>(R.id.TirePressure_txt)
         speedometer1?.apply {
             post {
@@ -46,12 +45,12 @@ class DashboardFragment : Fragment(R.layout.fragment_dashboard) {
                 }
                 launch {
                     MainActivity.speed2Flow.collect { newSpeed ->
-                        speedometer2?.speedTo(newSpeed)
+                        speedometer2?.speedTo(newSpeed/2000)
                     }
                 }
                 launch {
                     MainActivity.temperatureFlow.collect { value ->
-                        val temp = value.coerceIn(-40f, 215f)
+                        val temp = value.coerceIn(0f, 215f)
                         temperatureText?.text = String.format("%.1f°C", temp)
 
                         val color = when {
@@ -67,13 +66,13 @@ class DashboardFragment : Fragment(R.layout.fragment_dashboard) {
                 launch {
                     MainActivity.Air_flow_Flow.collect { value ->
                         val airFlow = value.coerceIn(0f, 655f)
-                        batteryText?.text = String.format("%.1f", airFlow)
+                        AirFlowText?.text = String.format("%.1f", airFlow)
 
                         val color = when {
                             airFlow > 450f || airFlow < 50f -> R.color.warning_orange
                             else -> R.color.normal_green
                         }
-                        batteryText?.setTextColor(ContextCompat.getColor(requireContext(), color))
+                        AirFlowText?.setTextColor(ContextCompat.getColor(requireContext(), color))
                     }
                 }
 
