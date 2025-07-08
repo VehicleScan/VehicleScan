@@ -11,7 +11,6 @@ PRODUCT_PACKAGES += udsServer \
 					can_setup \
 					canUdsServiceHandler \
 					DiagnosticApp \
-					DiagnosticOverlaybp \
 					CustomCarSystemUIBottomRoundedRRO
 
 BOARD_SEPOLICY_DIRS += 	vendor/VehicleScan/can_uds/client_test/se_policy

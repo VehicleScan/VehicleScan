@@ -1,3 +1,14 @@
+android_library_import {
+    name: "sdp_android",
+    aars: ["libs/sdp-android-1.1.1.aar"],
+}
+
+android_library_import {
+    name: "ssp_android",
+    aars: ["libs/ssp-android-1.1.1.aar"],
+}
+
+
 android_app {
     name: "DiagnosticApp",
     srcs: ["app/src/main/java/com/example/diagnostic_android_app/*.kt"],
@@ -21,6 +32,8 @@ android_app {
         "android.car",
         "com.android.car.internal.dep",
         "kotlinx-coroutines-android",
+        "sdp_android",
+        "ssp_android",
     ],
     
     overrides: [

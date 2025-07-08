@@ -2,12 +2,17 @@ package com.example.diagnostic_android_app
 
 import android.os.Bundle
 import android.view.View
+import android.widget.Button
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 
 class UdsListFragment : Fragment(R.layout.fragment_uds_list) {
+
+    lateinit var clear_btn : Button
+    lateinit var send_sms_btn: Button
+    lateinit var  send_report_btn: Button
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
@@ -21,5 +26,9 @@ class UdsListFragment : Fragment(R.layout.fragment_uds_list) {
                 )
             }
         }
+        clear_btn = view.findViewById<Button>(R.id.clear_button)
+        send_sms_btn = view.findViewById<Button>(R.id.send_sms_button)
+        send_report_btn = view.findViewById<Button>(R.id.send_report_button)
+
     }
 }

@@ -9,7 +9,7 @@ android {
 
     defaultConfig {
         applicationId = "com.example.diagnostic_android_app"
-        minSdk = 35
+        minSdk = 34
         targetSdk = 35
         versionCode = 1
         versionName = "1.0"
@@ -66,4 +66,9 @@ dependencies {
     testImplementation ("junit:junit:4.13.2")
     androidTestImplementation ("androidx.test.ext:junit:1.1.5")
     androidTestImplementation ("androidx.test.espresso:espresso-core:3.5.1")
+
+    // for scalable sp
+    implementation("com.intuit.ssp:ssp-android:1.0.6")
+    // for scalable dp
+    implementation("com.intuit.sdp:sdp-android:1.0.6")
 }

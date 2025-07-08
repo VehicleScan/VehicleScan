@@ -10,49 +10,56 @@
 
     <ImageView
         android:id="@+id/sensor_image"
-        android:layout_width="270dp"
-        android:layout_height="108dp"
+        android:layout_width="331dp"
+        android:layout_height="200dp"
         android:layout_gravity="center"
-        android:layout_marginTop="20dp"
         android:layout_marginEnd="12dp" />
 
     <TextView
         android:id="@+id/name"
-        android:layout_width="901dp"
-        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        android:layout_height="64dp"
         android:layout_gravity="center"
         android:layout_marginTop="16dp"
         android:gravity="center"
         android:textAppearance="?attr/textAppearanceHeadline6"
-        android:textColor="@color/white" />
+        android:textColor="@color/white"
+        android:textSize="25dp"
+        android:text = "Name"
+        android:textStyle="bold" />
 
     <TextView
         android:id="@+id/details"
-        android:layout_width="896dp"
-        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        android:layout_height="56dp"
         android:layout_gravity="center"
         android:layout_marginTop="8dp"
         android:gravity="center"
-        android:textColor="@color/white" />
+        android:textColor="@color/white"
+        android:text = "Description"
+        android:textSize="25dp" />
 
     <TextView
         android:id="@+id/garage_support_status"
-        android:layout_width="899dp"
-        android:layout_height="wrap_content"
+        android:layout_width="932dp"
+        android:layout_height="54dp"
         android:layout_gravity="center"
         android:layout_marginTop="8dp"
         android:gravity="center"
-        android:textColor="@color/Red" />
+        android:textColor="@color/Red"
+        android:text = "Problem"
+        android:textSize="25dp" />
 
     <Button
         android:id="@+id/back_button"
-        android:layout_width="661dp"
-        android:layout_height="wrap_content"
+        android:layout_width="323dp"
+        android:layout_height="63dp"
         android:layout_gravity="center"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="6dp"
+        android:backgroundTint="@color/blue_soft"
         android:gravity="center"
         android:text="Back"
-        android:backgroundTint="@color/dark_color"
-        android:textColor="@color/white" />
+        android:textColor="@color/white"
+        android:textSize="25dp" />
 
 </LinearLayout>
