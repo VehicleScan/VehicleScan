@@ -1,8 +1,5 @@
 sh_binary {
     name: "can_setup",
     src: "can_setup.sh",
-    vendor: true,
-    init_rc: ["can.init.rc"],  
-    required: ["su"],            
-    filename: "can_setup",
+    init_rc: ["can.init.rc"],
 }
