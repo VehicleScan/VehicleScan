@@ -6,58 +6,60 @@
     android:layout_height="match_parent"
     android:background="@drawable/gradient_background"
     android:orientation="vertical"
-    android:padding="@dimen/_16sdp">
+    android:padding="16dp">
 
     <ImageView
         android:id="@+id/sensor_image"
-        android:layout_width="@dimen/_261sdp"
-        android:layout_height="@dimen/_167sdp"
+        android:layout_width="331dp"
+        android:layout_height="200dp"
         android:layout_gravity="center"
-        android:layout_marginTop="@dimen/_20sdp"
-        android:layout_marginEnd="@dimen/_12sdp" />
+        android:layout_marginEnd="12dp" />
 
     <TextView
         android:id="@+id/name"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="64dp"
         android:layout_gravity="center"
-        android:layout_marginTop="@dimen/_16sdp"
+        android:layout_marginTop="16dp"
+        android:gravity="center"
         android:textAppearance="?attr/textAppearanceHeadline6"
         android:textColor="@color/white"
-        android:textSize="@dimen/_25sdp"
-        android:textStyle="bold"
-        android:gravity="center"/>
+        android:textSize="25dp"
+        android:text = "Name"
+        android:textStyle="bold" />
 
     <TextView
         android:id="@+id/details"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="56dp"
         android:layout_gravity="center"
-        android:layout_marginTop="@dimen/_8sdp"
+        android:layout_marginTop="8dp"
+        android:gravity="center"
         android:textColor="@color/white"
-        android:textSize="@dimen/_25sdp"
-        android:gravity="center"/>
+        android:text = "Description"
+        android:textSize="25dp" />
 
     <TextView
         android:id="@+id/garage_support_status"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_width="932dp"
+        android:layout_height="54dp"
         android:layout_gravity="center"
-        android:layout_marginTop="@dimen/_8sdp"
+        android:layout_marginTop="8dp"
+        android:gravity="center"
         android:textColor="@color/Red"
-        android:textSize="@dimen/_25sdp"
-        android:gravity="center"/>
+        android:text = "Problem"
+        android:textSize="25dp" />
 
     <Button
         android:id="@+id/back_button"
-        android:layout_width="394dp"
-        android:layout_height="58dp"
+        android:layout_width="323dp"
+        android:layout_height="63dp"
         android:layout_gravity="center"
-        android:layout_marginTop="@dimen/_16sdp"
+        android:layout_marginTop="6dp"
         android:backgroundTint="@color/blue_soft"
         android:gravity="center"
         android:text="Back"
         android:textColor="@color/white"
-        android:textSize="@dimen/_25sdp" />
+        android:textSize="25dp" />
 
 </LinearLayout>

@@ -22,17 +22,18 @@
 
             <com.github.anastr.speedviewlib.AwesomeSpeedometer
                 android:id="@+id/speedometer1"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="306dp"
+                android:layout_height="280dp"
                 app:sv_indicatorColor="@color/white"
-                app:sv_indicatorWidth="8dp"
+                app:sv_indicatorWidth="16dp"
                 app:sv_markHeight="4dp"
                 app:sv_marksNumber="@integer/material_motion_duration_medium_1"
                 app:sv_speedTextColor="@color/white"
                 app:sv_speedTextPosition="CENTER"
                 app:sv_speedTextSize="24sp"
+                app:sv_textSize="14dp"
                 app:sv_speedometerColor="@color/blue_soft"
-                app:sv_speedometerWidth="20dp"
+                app:sv_speedometerWidth="30dp"
                 app:sv_tickRotation="false"
                 app:sv_trianglesColor="@color/white"
                 app:sv_unit="Km/h"
@@ -59,20 +60,21 @@
 
             <com.github.anastr.speedviewlib.AwesomeSpeedometer
                 android:id="@+id/speedometer2"
-                android:layout_width="265dp"
-                android:layout_height="266dp"
+                android:layout_width="296dp"
+                android:layout_height="282dp"
                 app:sv_indicatorColor="@color/white"
-                app:sv_indicatorWidth="8dp"
+                app:sv_indicatorWidth="16dp"
                 app:sv_markHeight="4dp"
+                app:sv_speedometerWidth="30dp"
                 app:sv_marksNumber="@integer/material_motion_duration_medium_1"
                 app:sv_speedTextColor="@color/white"
                 app:sv_speedTextPosition="CENTER"
                 app:sv_speedTextSize="24sp"
                 app:sv_speedometerColor="@color/blue_soft"
-                app:sv_speedometerWidth="20dp"
                 app:sv_tickRotation="false"
                 app:sv_trianglesColor="@color/white"
                 app:sv_unit="RPM"
+                app:sv_textSize="14dp"
                 app:sv_unitTextSize="16sp" />
         </LinearLayout>
     </LinearLayout>
@@ -100,8 +102,8 @@
                 android:src="@drawable/temperaturecontrol2" />
 
             <TextView
-                android:layout_width="176dp"
-                android:layout_height="44dp"
+                android:layout_width="202dp"
+                android:layout_height="52dp"
                 android:gravity="center"
                 android:text="@string/Temperature"
                 android:textColor="#FFFFFF"
