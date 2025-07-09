@@ -35,7 +35,6 @@ class UdsListFragment : Fragment(R.layout.fragment_uds_list) {
         val car = Car.createCar(context)
 
         val carPropertyManager = car!!.getCarManager(Car.PROPERTY_SERVICE) as CarPropertyManager
-
         carPropertyManager.registerCallback(object : CarPropertyManager.CarPropertyEventCallback{
             override fun onChangeEvent(p0: CarPropertyValue<*>?) {
                 Log.i("TAG", "onChangeEvent: $p0 ")
@@ -102,12 +101,6 @@ class UdsListFragment : Fragment(R.layout.fragment_uds_list) {
         },VENDOR_EXTENSION_INIT_UDS_PROPERTY, CarPropertyManager.SENSOR_RATE_FASTEST)
 
 
-        lifecycleScope.launch {
-            while (true) {
-                carPropertyManager.setProperty<String>(String::class.java,VENDOR_EXTENSION_STRING_DTC_PROPERTY,0,"")
-                kotlinx.coroutines.delay(1000)
-            }
-        }
 
         clear_btn = view.findViewById(R.id.clear_button)
         send_sms_btn = view.findViewById(R.id.send_sms_button)
@@ -157,6 +150,21 @@ class UdsListFragment : Fragment(R.layout.fragment_uds_list) {
                         Toast.makeText(requireContext(), "Failed to send report: $error", Toast.LENGTH_LONG).show()
                     }
                 }
+            }
+        }
+    }
+
+    override fun onResume() {
+        super.onResume()
+
+        val car = Car.createCar(context)
+
+        val carPropertyManager = car!!.getCarManager(Car.PROPERTY_SERVICE) as CarPropertyManager
+
+        lifecycleScope.launch {
+            while (true) {
+                carPropertyManager.setProperty<String>(String::class.java,VENDOR_EXTENSION_STRING_DTC_PROPERTY,0,"")
+                kotlinx.coroutines.delay(1000)
             }
         }
     }
